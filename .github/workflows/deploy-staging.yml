@@ -1,5 +1,16 @@
 name: Stage the app
 
+env:
+  DOCKER_IMAGE_NAME: yongshun950824-azure-ttt
+  IMAGE_REGISTRY_URL: docker.pkg.github.com
+  #################################################
+  ### USER PROVIDED VALUES ARE REQUIRED BELOW   ###
+  #################################################
+  #################################################
+  ### REPLACE USERNAME WITH GH USERNAME         ###
+  AZURE_WEBAPP_NAME: yongshun950824-ttt-app
+  #################################################
+
 on: 
   pull_request:
     types: [labeled]
@@ -7,3 +18,5 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    if: contains(github.event.pull_request.labels.*.name, 'stage')
